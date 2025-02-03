@@ -21,6 +21,7 @@ Can be x1c, x1, p1p, p1s, x1e, a1m (A1 Mini), a1.`
 )
 
 func NewMainCommand() *cobra.Command {
+	debugMode := false
 	deviceModelLabel := ""
 	deviceName := DEFAULT_DEVICE_NAME
 	intervalSeconds := DEFAULT_INTERVAL_SECONDS
@@ -68,12 +69,15 @@ func NewMainCommand() *cobra.Command {
 					return err
 				}
 
-				fmt.Printf("%s", buf)
+				if debugMode {
+					fmt.Printf("%s", buf)
+				}
 				time.Sleep(time.Duration(intervalSeconds) * time.Second)
 			}
 		},
 	}
 
+	rootCmd.Flags().BoolVar(&debugMode, "debug", false, "Flag to enable debug mode.")
 	rootCmd.Flags().StringVarP(&deviceModelLabel, "device-model", "m", "", flagUsageDeviceModel)
 	rootCmd.Flags().StringVarP(&serialNumber, "serial-number", "n", "", "Device serial number (required).")
 	rootCmd.Flags().StringVarP(&printerIP, "printer-ip", "p", "", "IP address of the printer (required).")
