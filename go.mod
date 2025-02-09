@@ -1,6 +1,6 @@
 module github.com/fenrirunbound/bambulab-bridge
 
-go 1.23.5
+go 1.23
 
 require (
 	github.com/spf13/cobra v1.8.1
