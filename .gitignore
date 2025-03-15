@@ -1,1 +1,4 @@
 blb
+
+# Added by goreleaser init:
+dist/
